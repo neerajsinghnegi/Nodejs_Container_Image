@@ -1,35 +1,29 @@
 name: Node CI
-
 on: [push]
-
 jobs:
-
   build:
-
     runs-on: ubuntu-latest
-
     strategy:
-
       matrix:
-
         node-version: [12.x]
 
     steps:
-
     - uses: actions/checkout@v1
-
-    - name: Use Node.js ${{ matrix.node-version }}
-
-      uses: actions/setup-node@v1
-
-      with:
-
-        node-version: ${{ matrix.node-version }}
-
-    - name: Test the Testcases 
-
+    - name: docker login
+      env:
+        DOCKER_USER: ${{ secrets.Docker_username }}   
+        DOCKER_PASSWORD: ${{ secrets.Docker_password }}  
+        
       run: |
-
+        docker login -u $DOCKER_USER -p $DOCKER_PASSWORD
+    - name: Use Node.js ${{ matrix.node-version }}
+      uses: actions/setup-node@v1
+      with:
+        node-version: ${{ matrix.node-version }}
+    - name: Test the Testcases 
+      run: |
         npm install
-        docker build -t nodejs:1.0.0 . 
-
+        docker build -t neerajsinghnegi/nodejs:1.0.0 . 
+    - name: docker push
+      run: |
+        docker push neerajsinghnegi/nodejs:1.0.0
