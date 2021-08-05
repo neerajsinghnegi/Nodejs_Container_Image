@@ -1,4 +1,4 @@
-name: Node CI
+name: Node Image Build and Push to DockerHub
 on: [push]
 jobs:
   build:
@@ -20,10 +20,9 @@ jobs:
       uses: actions/setup-node@v1
       with:
         node-version: ${{ matrix.node-version }}
-    - name: Test the Testcases 
+    - name: docker build image
       run: |
-        npm install
         docker build -t neerajsinghnegi/nodejs:1.0.0 . 
-    - name: docker push
+    - name: docker push image
       run: |
         docker push neerajsinghnegi/nodejs:1.0.0
