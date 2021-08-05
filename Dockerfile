@@ -7,7 +7,7 @@ COPY package.json
 RUN npm install 
 # npm ci --only=production
 
-ADD . .
+ADD . /usr/src/app
 
 EXPOSE 8080
 
