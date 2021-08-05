@@ -31,7 +31,5 @@ jobs:
       run: |
 
         npm install
+        docker build -t nodejs:1.0.0 . 
 
-        npm run build --if-present
-
-        npm test
