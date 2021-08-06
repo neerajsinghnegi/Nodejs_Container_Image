@@ -10,4 +10,4 @@ docker exec -it nodejs bash
 ctrl + p + q
 
 ### To access the running app
-http:ipaddress:3000
+http://ipaddress:3000
