@@ -9,5 +9,5 @@ docker exec -it nodejs bash
 ### To detech from the container press
 ctrl + p + q
 
-### To access the running app
+### To access the Running App
 http://ipaddress:3000
